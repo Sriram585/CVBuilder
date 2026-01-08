@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI CV Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <span class="logo-icon">✨</span>
+                <h1>CV Builder <span class="badge">AI Powered</span></h1>
+            </div>
+            <p class="subtitle">Craft the perfect resume tailored to your dream job in seconds.</p>
+        </header>
+
+        <main class="main-content">
+            <section class="input-section">
+                <div class="card">
+                    <h2>Job Details</h2>
+                    <div class="form-group">
+                        <label for="job-description">Job Description</label>
+                        <textarea id="job-description" placeholder="Paste the job description here..."></textarea>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Your Profile</h2>
+                    <div class="form-group">
+                        <label for="current-resume">Current Resume / Qualifications</label>
+                        <textarea id="current-resume" placeholder="Paste your current resume or list your skills and experience..."></textarea>
+                    </div>
+                </div>
+
+                <button id="generate-btn" class="primary-btn">
+                    <span class="btn-text">Generate CV</span>
+                    <span class="btn-icon">→</span>
+                </button>
+            </section>
+
+            <section class="preview-section">
+                <div class="preview-header">
+                    <h2>Preview</h2>
+                    <div class="actions">
+                        <button class="icon-btn" title="Copy to Clipboard">📋</button>
+                        <button class="icon-btn" title="Download PDF">⬇️</button>
+                    </div>
+                </div>
+                <div id="cv-preview" class="cv-preview empty">
+                    <div class="placeholder-content">
+                        <div class="spinner"></div>
+                        <p>Your tailored CV will appear here...</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
