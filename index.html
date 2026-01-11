@@ -16,8 +16,7 @@
         <!-- Header -->
         <header class="app-header">
             <div class="logo">
-                <span class="logo-icon">✨</span>
-                <h1>CV Builder <span class="badge">AI Powered</span></h1>
+                <h1>CV Builder</h1>
             </div>
             <nav class="step-indicator" id="step-indicator">
                 <div class="step active" data-step="1">1. Start</div>
@@ -127,8 +126,20 @@
                     <button class="back-btn" onclick="app.prevStep()">← Back</button>
                     <h2>Select a Template</h2>
                 </div>
+                
+                <div class="filter-bar" style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem;">
+                    <button class="filter-btn active" onclick="app.setCategory('all', this)" style="padding: 0.5rem 1.5rem; border-radius: 99px; border: 1px solid var(--border-color); background: var(--c-white); cursor: pointer; transition: all 0.2s;">All</button>
+                    <button class="filter-btn" onclick="app.setCategory('professional', this)" style="padding: 0.5rem 1.5rem; border-radius: 99px; border: 1px solid var(--border-color); background: var(--c-white); cursor: pointer; transition: all 0.2s;">Professional</button>
+                    <button class="filter-btn" onclick="app.setCategory('creative', this)" style="padding: 0.5rem 1.5rem; border-radius: 99px; border: 1px solid var(--border-color); background: var(--c-white); cursor: pointer; transition: all 0.2s;">Creative / Anti-CV</button>
+                </div>
+
                 <div class="templates-grid" id="template-grid">
                     <!-- Templates will be generated here by script.js -->
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="primary-btn" onclick="generator.generateBatch(true, app.state.category)" style="background: transparent; color: var(--text-main); border: 1px solid var(--border-color);">
+                        <i data-lucide="refresh-cw" style="width: 1rem; height: 1rem; margin-right: 0.5rem; display: inline-block; vertical-align: middle;"></i> Load More Designs
+                    </button>
                 </div>
             </section>
 

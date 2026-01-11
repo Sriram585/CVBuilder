@@ -3,12 +3,30 @@ const app = {
         step: 1,
         method: null,
         data: { name: '', title: '', email: '', phone: '', experience: '', skills: '', education: '', certifications: '' },
-        currentConfig: null // Stores the selected procedural design config
+        currentConfig: null,
+        category: 'all'
     },
 
     init: () => {
         if (window.lucide) lucide.createIcons();
         generator.generateBatch(); // Generate initial batch
+    },
+
+    setCategory: (cat, btn) => {
+        app.state.category = cat;
+        // Update Buttons
+        document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('active');
+            b.style.background = 'var(--c-white)';
+            b.style.color = 'var(--text-main)';
+            b.style.borderColor = 'var(--border-color)';
+        });
+        btn.classList.add('active');
+        btn.style.background = 'var(--c-dark-green)';
+        btn.style.color = 'white';
+        btn.style.borderColor = 'var(--c-dark-green)';
+
+        generator.generateBatch(false, cat);
     },
 
     setMethod: (method) => {
@@ -225,7 +243,7 @@ const app = {
  * Generates infinite combinations of design "Genes".
  */
 const generator = {
-    // Genes
+    // Genes: Expanded to ~50 Palettes and ~20 Fonts
     palettes: [
         { name: "Slate", primary: "#1e293b" },
         { name: "Indigo", primary: "#4f46e5" },
@@ -235,7 +253,48 @@ const generator = {
         { name: "Violet", primary: "#7c3aed" },
         { name: "Teal", primary: "#0d9488" },
         { name: "Amber", primary: "#d97706" },
-        // Imagine 50 more...
+        { name: "Cyan", primary: "#0891b2" },
+        { name: "Fuchsia", primary: "#c026d3" },
+        { name: "Lime", primary: "#65a30d" },
+        { name: "Orange", primary: "#ea580c" },
+        { name: "Sky", primary: "#0284c7" },
+        { name: "Pink", primary: "#db2777" },
+        { name: "Red", primary: "#dc2626" },
+        { name: "Yellow", primary: "#ca8a04" },
+        { name: "Green", primary: "#16a34a" },
+        { name: "Purple", primary: "#9333ea" },
+        { name: "Zinc", primary: "#52525b" },
+        { name: "Neutral", primary: "#525252" },
+        { name: "Stone", primary: "#57534e" },
+        { name: "Midnight", primary: "#0f172a" },
+        { name: "Forest", primary: "#064e3b" },
+        { name: "Burgundy", primary: "#7f1d1d" },
+        { name: "Navy", primary: "#1e3a8a" },
+        { name: "Crimson", primary: "#9f1239" },
+        { name: "Chocolate", primary: "#451a03" },
+        { name: "Gold", primary: "#b45309" },
+        { name: "Olive", primary: "#3f6212" },
+        { name: "Ocean", primary: "#155e75" },
+        { name: "Royal", primary: "#4338ca" },
+        { name: "Coral", primary: "#be123c" },
+        { name: "Berry", primary: "#831843" },
+        { name: "Eggplant", primary: "#581c87" },
+        { name: "Charcoal", primary: "#334155" },
+        { name: "Steel", primary: "#374151" },
+        { name: "Bronze", primary: "#78350f" },
+        { name: "Copper", primary: "#9a3412" },
+        { name: "Plum", primary: "#701a75" },
+        { name: "Mauve", primary: "#86198f" },
+        { name: "Seafoam", primary: "#115e59" },
+        { name: "Mint", primary: "#047857" },
+        { name: "Leaf", primary: "#14532d" },
+        { name: "Sunset", primary: "#c2410c" },
+        { name: "Dusk", primary: "#4c1d95" },
+        { name: "Lavender", primary: "#7e22ce" },
+        { name: "Sand", primary: "#78350f" },
+        { name: "Earth", primary: "#431407" },
+        { name: "Graphite", primary: "#18181b" },
+        { name: "Ash", primary: "#27272a" }
     ],
     fonts: [
         { heading: "'Helvetica Neue', sans-serif", body: "'Helvetica Neue', sans-serif" },
@@ -243,30 +302,62 @@ const generator = {
         { heading: "'Playfair Display', serif", body: "'Lato', sans-serif" },
         { heading: "'Oswald', sans-serif", body: "'Open Sans', sans-serif" },
         { heading: "'Montserrat', sans-serif", body: "'Merriweather', serif" },
-        // Imagine 20 more...
+        { heading: "'Roboto', sans-serif", body: "'Roboto', sans-serif" },
+        { heading: "'Lato', sans-serif", body: "'Lato', sans-serif" },
+        { heading: "'Open Sans', sans-serif", body: "'Open Sans', sans-serif" },
+        { heading: "'Raleway', sans-serif", body: "'Open Sans', sans-serif" },
+        { heading: "'Poppins', sans-serif", body: "'Lato', sans-serif" },
+        { heading: "'Merriweather', serif", body: "'Merriweather', serif" },
+        { heading: "'Nunito', sans-serif", body: "'Nunito', sans-serif" },
+        { heading: "'Ubuntu', sans-serif", body: "'Ubuntu', sans-serif" },
+        { heading: "'Rubik', sans-serif", body: "'Rubik', sans-serif" },
+        { heading: "'Lora', serif", body: "'Lora', serif" },
+        { heading: "'Bitter', serif", body: "'Lato', sans-serif" },
+        { heading: "'Arvo', serif", body: "'Open Sans', sans-serif" },
+        { heading: "'Josefin Sans', sans-serif", body: "'Lato', sans-serif" },
+        { heading: "'Fjalla One', sans-serif", body: "'Nunito', sans-serif" },
+        { heading: "'Cabin', sans-serif", body: "'Cabin', sans-serif" },
+        { heading: "'Quicksand', sans-serif", body: "'Quicksand', sans-serif" }
     ],
     layouts: ["sidebar-left", "sidebar-right", "full-width"],
     headers: ["centered", "left", "solid"],
 
+    // Categories logic
+    getCategorySubset: (category) => {
+        if (category === 'professional') {
+            return {
+                palettes: generator.palettes.filter(p => ['Slate', 'Indigo', 'Navy', 'Midnight', 'Forest', 'Charcoal', 'Steel', 'Ash', 'Neutral', 'Zinc', 'Stone', 'Blue', 'Teal'].includes(p.name)),
+                fonts: generator.fonts.filter(f => ['Helvetica Neue', 'Georgia', 'Roboto', 'Open Sans', 'Lato', 'Merriweather', 'Lora', 'Arvo'].some(n => f.heading.includes(n)))
+            };
+        } else if (category === 'creative') {
+            return {
+                palettes: generator.palettes.filter(p => !['Slate', 'Navy', 'Midnight', 'Charcoal', 'Ash', 'Neutral'].includes(p.name)), // Exclude strictly boring ones
+                fonts: generator.fonts // All fonts are fair game, maybe bias towards display ones in future
+            };
+        }
+        return { palettes: generator.palettes, fonts: generator.fonts }; // 'all'
+    },
+
     // Methods
-    generateRandomConfig: () => {
+    generateRandomConfig: (category = 'all') => {
+        const subset = generator.getCategorySubset(category);
         const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
         return {
             id: Math.random().toString(36).substr(2, 9),
-            colors: rand(generator.palettes),
-            fonts: rand(generator.fonts),
+            colors: rand(subset.palettes),
+            fonts: rand(subset.fonts),
             layout: rand(generator.layouts),
             headerType: rand(generator.headers),
             headerAlign: rand(['left', 'centered']) // Independent of type sometimes
         };
     },
 
-    generateBatch: (append = false) => {
+    generateBatch: (append = false, category = app.state.category || 'all') => {
         const container = document.getElementById('template-grid');
         if (!append) container.innerHTML = '';
 
-        for (let i = 0; i < 9; i++) {
-            const config = generator.generateRandomConfig();
+        for (let i = 0; i < 9; i++) { // Generate 9 at a time
+            const config = generator.generateRandomConfig(category);
 
             const card = document.createElement('div');
             card.className = 'template-card';
