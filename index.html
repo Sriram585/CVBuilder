@@ -62,19 +62,19 @@
                         <div class="input-grid">
                             <div class="form-group">
                                 <label>Full Name</label>
-                                <input type="text" id="inp-name" placeholder="John Doe">
+                                <input type="text" id="inp-name" placeholder="Enter your full name" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label>Job Title</label>
-                                <input type="text" id="inp-title" placeholder="Software Engineer">
+                                <input type="text" id="inp-title" placeholder="Enter your job title" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" id="inp-email" placeholder="john@example.com">
+                                <input type="email" id="inp-email" placeholder="Enter your email" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label>Phone</label>
-                                <input type="text" id="inp-phone" placeholder="(555) 123-4567">
+                                <input type="text" id="inp-phone" placeholder="Enter your phone number" autocomplete="off">
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                         <h3>Experience Summary</h3>
                         <div class="form-group">
                             <label>Paste your work history or type simplified summary</label>
-                            <textarea id="inp-experience" placeholder="• Senior Developer at Google (2020-Present)..."></textarea>
+                            <textarea id="inp-experience" placeholder="Enter your work history or type simplified summary" autocomplete="off"></textarea>
                         </div>
                     </div>
 
@@ -93,7 +93,7 @@
                         <h3>Skills</h3>
                         <div class="form-group">
                             <label>Comma separated skills</label>
-                            <input type="text" id="inp-skills" placeholder="Python, React, Leadership, Project Management">
+                            <input type="text" id="inp-skills" placeholder="Enter your skills" autocomplete="off">
                         </div>
                     </div>
 
@@ -102,7 +102,16 @@
                         <h3>Education</h3>
                         <div class="form-group">
                              <label>University / Degree</label>
-                            <textarea id="inp-education" placeholder="B.S. Computer Science, Stanford University (2016-2020)" rows="2"></textarea>
+                            <textarea id="inp-education" placeholder="Enter your education details" rows="2" autocomplete="off"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="form-section">
+                        <h3>Certifications</h3>
+                        <div class="form-group">
+                             <label>List your certifications</label>
+                            <textarea id="inp-certifications" placeholder="Enter your certifications" rows="2" autocomplete="off"></textarea>
                         </div>
                     </div>
                 </div>
@@ -118,35 +127,8 @@
                     <button class="back-btn" onclick="app.prevStep()">← Back</button>
                     <h2>Select a Template</h2>
                 </div>
-                <div class="templates-grid">
-                    <!-- Template 1 -->
-                    <div class="template-card" onclick="app.selectTemplate('modern')">
-                        <div class="template-preview modern">
-                            <div class="t-header"></div>
-                            <div class="t-body">
-                                <div class="t-bar"></div>
-                                <div class="t-main"></div>
-                            </div>
-                        </div>
-                        <h3>Modern</h3>
-                    </div>
-                    <!-- Template 2 -->
-                    <div class="template-card" onclick="app.selectTemplate('classic')">
-                        <div class="template-preview classic">
-                            <div class="t-header"></div>
-                            <div class="t-body"></div>
-                        </div>
-                        <h3>Classic</h3>
-                    </div>
-                    <!-- Template 3 -->
-                    <div class="template-card" onclick="app.selectTemplate('minimalist')">
-                        <div class="template-preview minimalist">
-                            <div class="t-body">
-                                <div class="t-main"></div>
-                            </div>
-                        </div>
-                        <h3>Minimalist</h3>
-                    </div>
+                <div class="templates-grid" id="template-grid">
+                    <!-- Templates will be generated here by script.js -->
                 </div>
             </section>
 

@@ -2,7 +2,7 @@ const app = {
     state: {
         step: 1,
         method: null,
-        data: { name: '', title: '', email: '', phone: '', experience: '', skills: '', education: '' },
+        data: { name: '', title: '', email: '', phone: '', experience: '', skills: '', education: '', certifications: '' },
         currentConfig: null // Stores the selected procedural design config
     },
 
@@ -28,7 +28,8 @@ const app = {
                         phone: "(555) 012-3456",
                         experience: "• Led cross-functional team of 15 designers and developers.\n• Increased user retention by 25% through UI overhaul.\n• Managed product roadmap for Q3 and Q4.",
                         skills: "Product Strategy, Agile, UX Design, Data Analysis",
-                        education: "MBA, Harvard Business School (2018)"
+                        education: "MBA, Harvard Business School (2018)",
+                        certifications: "Certified Scrum Master (CSM)\nGoogle Analytics Certified"
                     };
                     app.populateForm();
                     app.nextStep();
@@ -36,7 +37,7 @@ const app = {
             };
             input.click();
         } else {
-            app.state.data = { name: '', title: '', email: '', phone: '', experience: '', skills: '', education: '' };
+            app.state.data = { name: '', title: '', email: '', phone: '', experience: '', skills: '', education: '', certifications: '' };
             app.populateForm();
             app.nextStep();
         }
@@ -83,6 +84,7 @@ const app = {
         app.state.data.experience = document.getElementById('inp-experience').value;
         app.state.data.skills = document.getElementById('inp-skills').value;
         app.state.data.education = document.getElementById('inp-education').value;
+        app.state.data.certifications = document.getElementById('inp-certifications').value;
     },
 
     populateForm: () => {
@@ -93,6 +95,7 @@ const app = {
         document.getElementById('inp-experience').value = app.state.data.experience;
         document.getElementById('inp-skills').value = app.state.data.skills;
         document.getElementById('inp-education').value = app.state.data.education;
+        document.getElementById('inp-certifications').value = app.state.data.certifications || '';
     },
 
     renderResume: () => {
@@ -108,7 +111,8 @@ const app = {
             phone: data.phone || "(123) 456-7890",
             experience: (data.experience || "• Your work experience will appear here.").split('\n').map(l => `<li>${l}</li>`).join(''),
             skills: data.skills || "Skill 1, Skill 2, Skill 3",
-            education: data.education || "Degree, University"
+            education: data.education || "Degree, University",
+            certifications: (data.certifications || "").split('\n').join('<br>')
         };
 
         // RENDER LOGIC BASED ON GENES
@@ -150,6 +154,13 @@ const app = {
             </section>
         `;
 
+        const certsBlock = d.certifications ? `
+            <section style="margin-bottom: 2rem;">
+               <h3 style="font-family: ${fontHeading}; ${sectionHeaderStyle}">Certifications</h3>
+               <div style="font-family: ${fontBody}; line-height: 1.4;">${d.certifications}</div>
+           </section>
+       ` : '';
+
         // Layout Assembly
         let layoutHtml = '';
         if (config.layout === 'sidebar-left') {
@@ -158,6 +169,7 @@ const app = {
                     <aside style="width: 32%; background: #f4f4f5; padding: 2rem; border-right: 1px solid #e5e7eb;">
                         ${skillBlock}
                         ${eduBlock}
+                        ${certsBlock}
                     </aside>
                     <main style="width: 68%; padding: 2rem;">
                         ${expBlock}
@@ -170,6 +182,7 @@ const app = {
                     <aside style="width: 32%; background: #f4f4f5; padding: 2rem; border-left: 1px solid #e5e7eb;">
                         ${skillBlock}
                          ${eduBlock}
+                         ${certsBlock}
                     </aside>
                     <main style="width: 68%; padding: 2rem;">
                         ${expBlock}
@@ -181,7 +194,10 @@ const app = {
                 <div class="layout-full-width" style="padding: 2rem;">
                     ${expBlock}
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                        <div>${eduBlock}</div>
+                        <div>
+                            ${eduBlock}
+                            ${certsBlock}
+                        </div>
                         <div>${skillBlock}</div>
                     </div>
                 </div>
