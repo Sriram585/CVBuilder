@@ -549,6 +549,16 @@ textarea:focus {
 }
 
 @media print {
+    @page {
+        margin: 0;
+    }
+
+    body {
+        margin: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
     body * {
         visibility: hidden;
     }
@@ -566,5 +576,7 @@ textarea:focus {
         margin: 0;
         padding: 0;
         box-shadow: none;
+        border: none;
+        border-radius: 0;
     }
 }
