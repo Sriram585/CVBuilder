@@ -329,10 +329,25 @@ const generator = {
                 palettes: generator.palettes.filter(p => ['Slate', 'Indigo', 'Navy', 'Midnight', 'Forest', 'Charcoal', 'Steel', 'Ash', 'Neutral', 'Zinc', 'Stone', 'Blue', 'Teal'].includes(p.name)),
                 fonts: generator.fonts.filter(f => ['Helvetica Neue', 'Georgia', 'Roboto', 'Open Sans', 'Lato', 'Merriweather', 'Lora', 'Arvo'].some(n => f.heading.includes(n)))
             };
-        } else if (category === 'creative') {
+        } else if (category === 'modern') {
             return {
                 palettes: generator.palettes.filter(p => !['Slate', 'Navy', 'Midnight', 'Charcoal', 'Ash', 'Neutral'].includes(p.name)), // Exclude strictly boring ones
-                fonts: generator.fonts // All fonts are fair game, maybe bias towards display ones in future
+                fonts: generator.fonts // All fonts are fair game
+            };
+        } else if (category === 'academic') {
+            return {
+                palettes: generator.palettes.filter(p => ['Slate', 'Midnight', 'Navy', 'Black', 'Charcoal', 'Burgundy', 'Bronze'].includes(p.name)),
+                fonts: generator.fonts.filter(f => ['Georgia', 'Merriweather', 'Playfair Display', 'Lora', 'Bitter', 'Arvo'].some(n => f.heading.includes(n)))
+            };
+        } else if (category === 'minimalist') {
+            return {
+                palettes: generator.palettes.filter(p => ['Slate', 'Zinc', 'Neutral', 'Stone', 'Ash', 'Graphite', 'Midnight'].includes(p.name)),
+                fonts: generator.fonts.filter(f => ['Helvetica Neue', 'Open Sans', 'Lato', 'Roboto', 'Montserrat', 'Quicksand'].some(n => f.heading.includes(n)))
+            };
+        } else if (category === 'technical') {
+            return {
+                palettes: generator.palettes.filter(p => ['Emerald', 'Teal', 'Cyan', 'Sky', 'Blue', 'Indigo', 'Violet', 'Slate', 'Zinc'].includes(p.name)),
+                fonts: generator.fonts.filter(f => ['Roboto', 'Ubuntu', 'Open Sans', 'Lato', 'Montserrat', 'Fjalla One'].some(n => f.heading.includes(n)))
             };
         }
         return { palettes: generator.palettes, fonts: generator.fonts }; // 'all'

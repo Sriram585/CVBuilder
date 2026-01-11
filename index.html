@@ -127,10 +127,13 @@
                     <h2>Select a Template</h2>
                 </div>
                 
-                <div class="filter-bar" style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem;">
-                    <button class="filter-btn active" onclick="app.setCategory('all', this)" style="padding: 0.5rem 1.5rem; border-radius: 99px; border: 1px solid var(--border-color); background: var(--c-white); cursor: pointer; transition: all 0.2s;">All</button>
-                    <button class="filter-btn" onclick="app.setCategory('professional', this)" style="padding: 0.5rem 1.5rem; border-radius: 99px; border: 1px solid var(--border-color); background: var(--c-white); cursor: pointer; transition: all 0.2s;">Professional</button>
-                    <button class="filter-btn" onclick="app.setCategory('creative', this)" style="padding: 0.5rem 1.5rem; border-radius: 99px; border: 1px solid var(--border-color); background: var(--c-white); cursor: pointer; transition: all 0.2s;">Creative / Anti-CV</button>
+                <div class="filter-bar" style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap;">
+                    <button class="filter-btn active" onclick="app.setCategory('all', this)" style="padding: 0.5rem 1.2rem; border-radius: 99px; border: 1px solid var(--border-color); background: var(--c-white); cursor: pointer; transition: all 0.2s; font-size: 0.9rem;">All</button>
+                    <button class="filter-btn" onclick="app.setCategory('professional', this)" style="padding: 0.5rem 1.2rem; border-radius: 99px; border: 1px solid var(--border-color); background: var(--c-white); cursor: pointer; transition: all 0.2s; font-size: 0.9rem;">Professional</button>
+                    <button class="filter-btn" onclick="app.setCategory('modern', this)" style="padding: 0.5rem 1.2rem; border-radius: 99px; border: 1px solid var(--border-color); background: var(--c-white); cursor: pointer; transition: all 0.2s; font-size: 0.9rem;">Modern</button>
+                    <button class="filter-btn" onclick="app.setCategory('academic', this)" style="padding: 0.5rem 1.2rem; border-radius: 99px; border: 1px solid var(--border-color); background: var(--c-white); cursor: pointer; transition: all 0.2s; font-size: 0.9rem;">Academic</button>
+                    <button class="filter-btn" onclick="app.setCategory('minimalist', this)" style="padding: 0.5rem 1.2rem; border-radius: 99px; border: 1px solid var(--border-color); background: var(--c-white); cursor: pointer; transition: all 0.2s; font-size: 0.9rem;">Minimalist</button>
+                    <button class="filter-btn" onclick="app.setCategory('technical', this)" style="padding: 0.5rem 1.2rem; border-radius: 99px; border: 1px solid var(--border-color); background: var(--c-white); cursor: pointer; transition: all 0.2s; font-size: 0.9rem;">Technical</button>
                 </div>
 
                 <div class="templates-grid" id="template-grid">
